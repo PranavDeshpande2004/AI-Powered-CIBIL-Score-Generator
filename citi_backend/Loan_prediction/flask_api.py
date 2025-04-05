@@ -7,9 +7,14 @@ import pandas as pd
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
+
 # Load the model and selected features
 model = joblib.load('model/credit_risk_model.pkl')
 selected_features = joblib.load('model/selected_features.pkl')
+
+@app.route("/")
+def home():
+    return jsonify({"message": "Backend is running on Render!"})
 
 @app.route('/api/predict', methods=['POST'])
 def predict():
